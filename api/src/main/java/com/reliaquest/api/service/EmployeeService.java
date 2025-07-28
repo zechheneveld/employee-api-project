@@ -63,7 +63,7 @@ public class EmployeeService {
             if (response.getBody() != null && response.getBody().getData() != null) {
                 log.info(
                         "Successfully fetched employee: {}",
-                        response.getBody().getData().getEmployee_name());
+                        response.getBody().getData().getEmployeeName());
                 return response.getBody().getData();
             }
             log.warn("Employee with id {} not found", id);
@@ -90,7 +90,7 @@ public class EmployeeService {
 
             HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
             ResponseEntity<ApiResponse<Employee>> response = restTemplate.exchange(
-                    baseUrl, HttpMethod.POST, request, new ParameterizedTypeReference<ApiResponse<Employee>>() {});
+                    baseUrl, HttpMethod.POST, request, new ParameterizedTypeReference<>() {});
 
             if (response.getBody() != null && response.getBody().getData() != null) {
                 Employee createdEmployee = response.getBody().getData();
@@ -118,7 +118,7 @@ public class EmployeeService {
 
             HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
             ResponseEntity<ApiResponse<Boolean>> response = restTemplate.exchange(
-                    baseUrl, HttpMethod.DELETE, request, new ParameterizedTypeReference<ApiResponse<Boolean>>() {});
+                    baseUrl, HttpMethod.DELETE, request, new ParameterizedTypeReference<>() {});
 
             if (response.getBody() != null && response.getBody().getData() != null) {
                 boolean deleted = response.getBody().getData();

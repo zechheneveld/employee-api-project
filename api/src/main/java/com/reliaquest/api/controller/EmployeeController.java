@@ -39,8 +39,8 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
         try {
             List<Employee> allEmployees = employeeService.getAllEmployees();
             List<Employee> filteredEmployees = allEmployees.stream()
-                    .filter(employee -> employee.getEmployee_name() != null
-                            && employee.getEmployee_name().toLowerCase().contains(searchString.toLowerCase()))
+                    .filter(employee -> employee.getEmployeeName() != null
+                            && employee.getEmployeeName().toLowerCase().contains(searchString.toLowerCase()))
                     .collect(Collectors.toList());
 
             log.info("Found {} employees matching search term: {}", filteredEmployees.size(), searchString);
@@ -73,8 +73,8 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
         try {
             List<Employee> employees = employeeService.getAllEmployees();
             Integer highestSalary = employees.stream()
-                    .filter(employee -> employee.getEmployee_salary() != null)
-                    .mapToInt(Employee::getEmployee_salary)
+                    .filter(employee -> employee.getEmployeeSalary() != null)
+                    .mapToInt(Employee::getEmployeeSalary)
                     .max()
                     .orElse(0);
 
@@ -92,10 +92,10 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
         try {
             List<Employee> employees = employeeService.getAllEmployees();
             List<String> topTenNames = employees.stream()
-                    .filter(employee -> employee.getEmployee_salary() != null)
-                    .sorted(Comparator.comparing(Employee::getEmployee_salary).reversed())
+                    .filter(employee -> employee.getEmployeeSalary() != null)
+                    .sorted(Comparator.comparing(Employee::getEmployeeSalary).reversed())
                     .limit(10)
-                    .map(Employee::getEmployee_name)
+                    .map(Employee::getEmployeeName)
                     .collect(Collectors.toList());
 
             log.info("Found top {} highest earning employees", topTenNames.size());
@@ -148,7 +148,7 @@ public class EmployeeController implements IEmployeeController<Employee, Employe
                 return ResponseEntity.notFound().build();
             }
 
-            String employeeName = employee.getEmployee_name();
+            String employeeName = employee.getEmployeeName();
             boolean deleted = employeeService.deleteEmployeeByName(employeeName);
 
             if (deleted) {

@@ -72,7 +72,7 @@ class EmployeeApiIntegrationTest {
 
         System.out.println("✓ Success: Found " + response.getBody().size() + " employees");
         if (!response.getBody().isEmpty()) {
-            System.out.println("  Sample employee: " + response.getBody().get(0).getEmployee_name());
+            System.out.println("  Sample employee: " + response.getBody().get(0).getEmployeeName());
         }
         System.out.println();
     }
@@ -100,7 +100,7 @@ class EmployeeApiIntegrationTest {
         assertNotNull(response.getBody());
         assertEquals(testId, response.getBody().getId());
 
-        System.out.println("✓ Success: Found employee " + response.getBody().getEmployee_name());
+        System.out.println("✓ Success: Found employee " + response.getBody().getEmployeeName());
         System.out.println();
     }
 
@@ -124,7 +124,7 @@ class EmployeeApiIntegrationTest {
         System.out.println(
                 "✓ Success: Found " + response.getBody().size() + " employees with '" + searchTerm + "' in name");
         if (!response.getBody().isEmpty()) {
-            System.out.println("  Sample match: " + response.getBody().get(0).getEmployee_name());
+            System.out.println("  Sample match: " + response.getBody().get(0).getEmployeeName());
         }
         System.out.println();
     }
@@ -188,15 +188,15 @@ class EmployeeApiIntegrationTest {
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertEquals(newEmployee.getName(), response.getBody().getEmployee_name());
-        assertEquals(newEmployee.getSalary(), response.getBody().getEmployee_salary());
-        assertEquals(newEmployee.getAge(), response.getBody().getEmployee_age());
-        assertEquals(newEmployee.getTitle(), response.getBody().getEmployee_title());
+        assertEquals(newEmployee.getName(), response.getBody().getEmployeeName());
+        assertEquals(newEmployee.getSalary(), response.getBody().getEmployeeSalary());
+        assertEquals(newEmployee.getAge(), response.getBody().getEmployeeAge());
+        assertEquals(newEmployee.getTitle(), response.getBody().getEmployeeTitle());
 
         // Store the created employee for deletion test
         this.createdEmployee = response.getBody();
 
-        System.out.println("✓ Success: Created employee " + response.getBody().getEmployee_name() + " with ID "
+        System.out.println("✓ Success: Created employee " + response.getBody().getEmployeeName() + " with ID "
                 + response.getBody().getId());
         System.out.println();
     }
@@ -214,7 +214,7 @@ class EmployeeApiIntegrationTest {
         }
 
         try {
-            System.out.println("  Attempting to delete employee: " + createdEmployee.getEmployee_name() + " (ID: "
+            System.out.println("  Attempting to delete employee: " + createdEmployee.getEmployeeName() + " (ID: "
                     + createdEmployee.getId() + ")");
 
             // Add a small delay to avoid rate limiting from previous requests

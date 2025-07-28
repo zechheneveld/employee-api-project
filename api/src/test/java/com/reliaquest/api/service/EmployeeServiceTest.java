@@ -66,8 +66,8 @@ class EmployeeServiceTest {
         // Then
         assertNotNull(result);
         assertEquals(2, result.size());
-        assertEquals("John Doe", result.get(0).getEmployee_name());
-        assertEquals("Jane Smith", result.get(1).getEmployee_name());
+        assertEquals("John Doe", result.get(0).getEmployeeName());
+        assertEquals("Jane Smith", result.get(1).getEmployeeName());
 
         verify(restTemplate).exchange(
             eq(baseUrl),
@@ -142,8 +142,8 @@ class EmployeeServiceTest {
         // Then
         assertNotNull(result);
         assertEquals(employeeId, result.getId());
-        assertEquals("John Doe", result.getEmployee_name());
-        assertEquals(50000, result.getEmployee_salary());
+        assertEquals("John Doe", result.getEmployeeName());
+        assertEquals(50000, result.getEmployeeSalary());
     }
 
     @Test
@@ -192,8 +192,8 @@ class EmployeeServiceTest {
         // Then
         assertNotNull(result);
         assertEquals("456", result.getId());
-        assertEquals("New Employee", result.getEmployee_name());
-        assertEquals(55000, result.getEmployee_salary());
+        assertEquals("New Employee", result.getEmployeeName());
+        assertEquals(55000, result.getEmployeeSalary());
 
         // Verify the request body was constructed correctly
         ArgumentCaptor<HttpEntity> requestCaptor = ArgumentCaptor.forClass(HttpEntity.class);
